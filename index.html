@@ -83,7 +83,7 @@
         </div>
     </main>
 
-    <!-- Modal Popup for Card Details -->
+    <!-- Modal Popup for Card Details (Only for cards without direct link) -->
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300 border border-slate-100 dark:border-slate-700" id="modalContainer">
             <div class="p-6 sm:p-8">
@@ -133,22 +133,7 @@
                 color: "from-blue-500 to-indigo-600",
                 badge: "윤리 및 책임",
                 link: "./notebooklm/index.html",
-                shortDesc: "올바른 생성형 AI 기술 활용을 위해 정립한 나만의 5가지 핵심 윤리 수칙 및 가이드라인입니다.",
-                details: `
-                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">나만의 생성형 AI 활용 5대 원칙</h4>
-                    <ul class="list-disc list-inside space-y-2 pl-2 mb-4">
-                        <li><strong>비판적 사고 유지:</strong> AI가 생성한 결과물은 오류(환각 현상)가 있을 수 있으므로 교과서 및 교차 검증을 필수 실시합니다.</li>
-                        <li><strong>출처 명확히 표기:</strong> AI 모델의 도움을 받아 작성한 보고서나 아이디어는 활용 범위를 명확히 주석으로 달아 투명성을 높입니다.</li>
-                        <li><strong>개인정보 및 저작권 보호:</strong> 민감한 개인 정보나 타인의 저작권 침해 우려가 있는 데이터는 프롬프트에 입력하지 않습니다.</li>
-                        <li><strong>학습 보조 도구로의 활용:</strong> AI에게 해답을 전적으로 요구하기보다 탐구의 계기를 마련하는 질문 파트너로 활용합니다.</li>
-                        <li><strong>표절 방지:</strong> AI가 생성한 텍스트를 그대로 복사-붙여넣기 하지 않고 나만의 문장으로 재구성합니다.</li>
-                    </ul>
-                    <div class="pt-2">
-                        <a href="./notebooklm/index.html" class="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition shadow-lg shadow-indigo-500/20 text-sm">
-                            <i data-lucide="external-link" class="w-4 h-4"></i> NotebookLM 상세 페이지 바로가기
-                        </a>
-                    </div>
-                `
+                shortDesc: "올바른 생성형 AI 기술 활용을 위해 정립한 나만의 5가지 핵심 윤리 수칙 및 가이드라인입니다."
             },
             {
                 id: "ai-story-video",
@@ -157,15 +142,8 @@
                 icon: "clapperboard",
                 color: "from-purple-500 to-pink-600",
                 badge: "생성형 AI 융합",
-                shortDesc: "ChatGPT와 Midjourney, Runway를 활용해 제작한 단편 인공지능 시나리오 및 영상 프로젝트입니다.",
-                details: `
-                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">프로젝트 개요: "2040년, AI 선생님과의 하루"</h4>
-                    <p class="mb-3">챗GPT로 SF 단편 시나리오 스크립트를 작성하고, 이미지 생성 AI를 통해 씬별 콘셉트 아트를 제작한 후 영상화한 작품입니다.</p>
-                    <div class="bg-slate-100 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600 space-y-2">
-                        <p><strong>🎬 주요 활용 도구:</strong> ChatGPT-4o (스토리), Midjourney (시각화), Runway Gen-2 (영상 변환)</p>
-                        <p><strong>💡 기획 의도:</strong> 미래 교육 현장에서 인간 교사와 AI 교사의 상호작용 및 조화를 스토리텔링 형식으로 구현했습니다.</p>
-                    </div>
-                `
+                link: "./video/index.html",
+                shortDesc: "ChatGPT와 Midjourney, Runway를 활용해 제작한 단편 인공지능 시나리오 및 영상 프로젝트입니다."
             },
             {
                 id: "career-data-analysis",
@@ -338,7 +316,7 @@
 
         function openModal(id) {
             const item = portfolioItems.find(p => p.id === id);
-            if (!item) return;
+            if (!item || !item.details) return;
 
             document.getElementById('modalCategory').innerText = item.category;
             document.getElementById('modalTitle').innerText = item.title;
