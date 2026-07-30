@@ -3,784 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>생성형 AI 과제 폭탄 피하기 서바이벌 가이드</title>
+    <title>인공지능일반 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Galmuri11:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        * {
-            font-family: 'Galmuri11', monospace, sans-serif;
-            image-rendering: pixelated;
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
         }
-        
-        .pixel-border {
-            box-shadow: 
-                -4px 0 0 0 #000,
-                4px 0 0 0 #000,
-                0 -4px 0 0 #000,
-                0 4px 0 0 #000;
-            margin: 4px;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-
-        .pixel-border-lg {
-            box-shadow: 
-                -6px 0 0 0 #1e293b,
-                6px 0 0 0 #1e293b,
-                0 -6px 0 0 #1e293b,
-                0 6px 0 0 #1e293b;
-            margin: 6px;
-        }
-
-        .pixel-box-green {
-            background-color: #10b981;
-            box-shadow: 
-                inset -4px -4px 0px 0px #047857,
-                inset 4px 4px 0px 0px #34d399;
-        }
-
-        .pixel-btn {
-            position: relative;
-            transition: all 0.1s ease;
-        }
-
-        .pixel-btn:active {
-            transform: translateY(4px);
-        }
-
-        /* Scanline effect for retro feel */
-        .scanline {
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.15) 50%
-            );
-            background-size: 100% 4px;
-        }
-
-        .heart-beat {
-            animation: beat 1.2s infinite;
-        }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #10b981;
-            border: 2px solid #000;
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col scanline antialiased selection:bg-emerald-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
 
-    <!-- Header / HUD -->
-    <header class="sticky top-0 z-50 bg-slate-950 border-b-4 border-slate-700 px-4 py-3 shadow-xl">
-        <div class="max-w-5xl mx-auto flex flex-wrap justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <!-- Home Button -->
-                <a href="index.html" title="홈으로 이동" class="pixel-btn bg-emerald-500 hover:bg-emerald-400 border-2 border-black p-2 rounded flex items-center justify-center text-slate-950 transition">
-                    <i class="fa-solid fa-house text-lg"></i>
-                </a>
-                
-                <div>
-                    <h1 class="text-emerald-400 font-bold text-base sm:text-lg tracking-wider flex items-center gap-2">
-                        <a href="index.html" class="hover:underline">AI 과제 폭탄 피하기</a>
-                    </h1>
-                    <p class="text-xs text-slate-400">학생을 위한 스마트폰 퀵 서바이벌 매뉴얼</p>
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/10 bg-white/75 dark:bg-slate-900/75">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-indigo-600 rounded-xl text-white shadow-lg shadow-indigo-500/30">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
+                        AI Portfolio
+                    </span>
                 </div>
-            </div>
-
-            <!-- Player Status Bar & Navigation -->
-            <div class="flex items-center gap-3 flex-wrap">
-                <a href="index.html" class="pixel-btn bg-slate-800 hover:bg-slate-700 text-emerald-400 text-xs font-bold px-3 py-2 border-2 border-slate-600 rounded flex items-center gap-1.5">
-                    <i class="fa-solid fa-house"></i>
-                    <span>홈</span>
-                </a>
-
-                <div class="flex items-center gap-3 bg-slate-800 px-3 py-2 border-2 border-slate-600 rounded">
-                    <div class="flex items-center gap-1 text-red-500 heart-beat">
-                        <i class="fa-solid fa-heart"></i>
-                        <span id="hp-count" class="text-xs font-bold text-white">HP 100%</span>
-                    </div>
-                    <div class="h-4 w-px bg-slate-600"></div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs text-amber-400 font-bold">LV.<span id="user-level">1</span></span>
-                        <div class="w-20 sm:w-24 bg-slate-700 h-3 border border-black rounded overflow-hidden">
-                            <div id="exp-bar" class="bg-emerald-400 h-full w-0 transition-all duration-500"></div>
-                        </div>
-                    </div>
-                    <button id="sound-toggle" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-2 py-1 rounded border border-slate-500">
-                        <i class="fa-solid fa-volume-high"></i>
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-5xl w-full mx-auto p-4 space-y-8">
-
-        <!-- Hero Banner Section -->
-        <section class="bg-slate-800 border-4 border-emerald-500/80 p-6 rounded-lg relative overflow-hidden shadow-2xl">
-            <div class="absolute -right-10 -bottom-10 opacity-10 text-emerald-400 text-9xl pointer-events-none">
-                <i class="fa-solid fa-robot"></i>
-            </div>
-            
-            <div class="max-w-2xl relative z-10 space-y-4">
-                <span class="inline-block bg-emerald-500 text-slate-950 text-xs font-bold px-2 py-1 uppercase tracking-widest border border-black">
-                    LEVEL UP YOUR AI SKILLS
-                </span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight">
-                    정답 자판기가 아닌<br>
-                    <span class="text-emerald-400">브레인스토밍 파트너</span>로 레벨업하기!
-                </h2>
-                <p class="text-sm text-slate-300 leading-relaxed">
-                    AI가 써준 글을 아무 생각 없이 제출했다가 F학점 폭탄을 맞지 마세요.
-                    4가지 퀘스트를 완료하고 완벽한 과제 생존법을 마스터해보세요.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#quests" class="pixel-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-2 text-sm border-2 border-black inline-flex items-center gap-2">
-                        <i class="fa-solid fa-play"></i> 퀘스트 시작하기
-                    </a>
-                    <a href="#pro-vs-noob" class="pixel-btn bg-slate-700 hover:bg-slate-600 text-white font-bold px-4 py-2 text-sm border-2 border-black inline-flex items-center gap-2">
-                        <i class="fa-solid fa-users"></i> 고수 vs 하수 비교
-                    </a>
+    <!-- Hero Section -->
+    <section class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-slate-50 to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 mb-6">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 2026학년도 1학기 성과물
+            </span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+                인공지능일반 <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">포트폴리오</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
+                생성형 AI 윤리부터 사회적 문제 해결 웹앱 개발까지, <br class="hidden sm:inline">
+                인공지능 기술을 활용하여 성장한 학습 탐구 여정을 기록합니다.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <div class="flex items-center gap-1.5 bg-white dark:bg-slate-800 px-4 py-2 rounded-full shadow-sm">
+                    <i data-lucide="user" class="w-4 h-4 text-indigo-500"></i> 작성자: 홍길동
                 </div>
-
-                <!-- 자료 바로가기 버튼 영역 -->
-                <div class="pt-3 border-t border-slate-700/80 mt-4 flex flex-wrap gap-2">
-                    <a id="download-ppt-btn" href="AI_Assignment_Survival_Guide.pdf" download="AI_Assignment_Survival_Guide.pdf" class="pixel-btn bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 text-xs border border-black inline-flex items-center gap-1.5 rounded">
-                        <i class="fa-solid fa-file-pdf"></i> 발표자료 다운로드
-                    </a>
-                    <button id="view-infographic-btn" class="pixel-btn bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-3 py-1.5 text-xs border border-black inline-flex items-center gap-1.5 rounded">
-                        <i class="fa-solid fa-image"></i> 인포그래픽 보기
-                    </button>
-                    <button id="view-video-btn" class="pixel-btn bg-rose-500 hover:bg-rose-400 text-white font-bold px-3 py-1.5 text-xs border border-black inline-flex items-center gap-1.5 rounded">
-                        <i class="fa-solid fa-circle-play"></i> 동영상 보기
-                    </button>
+                <div class="flex items-center gap-1.5 bg-white dark:bg-slate-800 px-4 py-2 rounded-full shadow-sm">
+                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-500"></i> 지도교사: 김AI 선생님
+                </div>
+                <div class="flex items-center gap-1.5 bg-white dark:bg-slate-800 px-4 py-2 rounded-full shadow-sm">
+                    <i data-lucide="layers" class="w-4 h-4 text-indigo-500"></i> 총 8개 프로젝트
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NOOB MISTAKES (위험 경고) -->
-        <section class="bg-red-950/40 border-2 border-red-600/60 p-5 rounded-lg">
-            <div class="flex items-center gap-2 text-red-400 font-bold text-base mb-3">
-                <i class="fa-solid fa-triangle-exclamation text-xl animate-bounce"></i>
-                <span>LEVEL 01 NOOB MISTAKE : 무작정 믿고 복붙하면 생기는 3대 재앙</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-slate-900/80 p-4 border border-red-500/40 rounded hover:border-red-400 transition">
-                    <div class="text-red-400 font-bold mb-1 flex items-center gap-2">
-                        <i class="fa-solid fa-bomb"></i> 그럴듯한 거짓말
-                    </div>
-                    <p class="text-xs text-slate-300">당당하게 헛소리하는 <b>환각(Hallucination) 현상</b> 발생. 존재하지 않는 논문이나 수치를 진짜처럼 생성함.</p>
-                </div>
-                <div class="bg-slate-900/80 p-4 border border-red-500/40 rounded hover:border-red-400 transition">
-                    <div class="text-red-400 font-bold mb-1 flex items-center gap-2">
-                        <i class="fa-solid fa-land-mine-on"></i> 저작권 지뢰
-                    </div>
-                    <p class="text-xs text-slate-300">타인의 창작물을 무단 도용한 결과물일 수 있어 법적/윤리적 표절 문제 발생 위험.</p>
-                </div>
-                <div class="bg-slate-900/80 p-4 border border-red-500/40 rounded hover:border-red-400 transition">
-                    <div class="text-red-400 font-bold mb-1 flex items-center gap-2">
-                        <i class="fa-solid fa-user-shield"></i> 개인정보 유출
-                    </div>
-                    <p class="text-xs text-slate-300">내 사생활, 연락처, 과제 데이터가 AI 학습용으로 영구 증발하여 서버에 기록될 가능성.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRO VS NOOB Section -->
-        <section id="pro-vs-noob" class="space-y-4">
-            <h2 class="text-xl font-bold text-emerald-400 flex items-center gap-2">
-                <i class="fa-solid fa-layer-group"></i> 과제 생존을 위한 AI 플레이어 레벨 비교
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- PRO Card -->
-                <div class="bg-emerald-950/30 border-2 border-emerald-500 p-5 rounded-lg relative">
-                    <div class="absolute top-3 right-3 bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 text-xs rounded">
-                        PRO (고수)
-                    </div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-emerald-500 text-slate-950 flex items-center justify-center text-2xl font-bold rounded-full border-2 border-black">
-                            <i class="fa-solid fa-user-ninja"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-emerald-300">고수 플레이어</h3>
-                            <p class="text-xs text-slate-400">AI를 보조 파트너로 스마트하게 조종</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-xs sm:text-sm">
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-emerald-500/30">
-                            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                            <span>초안 만들기 및 아이디어 브레인스토밍 파트너로 활용</span>
-                        </li>
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-emerald-500/30">
-                            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                            <span>교재와 공식 자료로 직접 팩트 체크 진행</span>
-                        </li>
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-emerald-500/30">
-                            <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-                            <span>나만의 비판적 생각과 논리를 더해 과제 최종 완성</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- NOOB Card -->
-                <div class="bg-rose-950/30 border-2 border-rose-500 p-5 rounded-lg relative">
-                    <div class="absolute top-3 right-3 bg-rose-500 text-white font-bold px-2 py-0.5 text-xs rounded">
-                        NOOB (하수)
-                    </div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-rose-500 text-white flex items-center justify-center text-2xl font-bold rounded-full border-2 border-black">
-                            <i class="fa-solid fa-face-sad-tear"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-rose-300">하수 플레이어</h3>
-                            <p class="text-xs text-slate-400">AI에 과제를 주도당함</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-xs sm:text-sm">
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-rose-500/30">
-                            <i class="fa-solid fa-xmark text-rose-400 mt-1"></i>
-                            <span>AI가 써준 결과물을 고민 없이 그대로 복사+붙여넣기</span>
-                        </li>
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-rose-500/30">
-                            <i class="fa-solid fa-xmark text-rose-400 mt-1"></i>
-                            <span>최신 정보나 수치를 의심 없이 100% 맹신함</span>
-                        </li>
-                        <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded border border-rose-500/30">
-                            <i class="fa-solid fa-xmark text-rose-400 mt-1"></i>
-                            <span>과제 전체 작성을 AI에게 전적으로 대리 지시</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Quests Section -->
-        <section id="quests" class="space-y-6">
-            <div class="flex justify-between items-end border-b-2 border-slate-700 pb-2">
-                <div>
-                    <h2 class="text-xl font-bold text-emerald-400 flex items-center gap-2">
-                        <i class="fa-solid fa-scroll"></i> 생존을 위한 4대 AI 퀘스트
-                    </h2>
-                    <p class="text-xs text-slate-400">각 퀘스트의 핵심 내용을 학습하고 완료 버튼을 눌러 레벨을 올리세요!</p>
-                </div>
-                <span id="quest-progress-text" class="text-xs font-bold text-amber-400 bg-slate-800 px-2 py-1 rounded border border-slate-600">
-                    완료: 0 / 4
-                </span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- Quest 1 -->
-                <div class="quest-card bg-slate-800 border-2 border-slate-600 rounded-lg p-5 flex flex-col justify-between transition-all duration-300 hover:border-emerald-500" data-quest="1">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded">QUEST 01</span>
-                            <span class="quest-badge text-xs text-slate-500 font-bold"><i class="fa-regular fa-circle"></i> 미완료</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-shield-halved text-emerald-400"></i> 당당한 헛소리 할루시네이션 방어
-                        </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            AI는 정답을 찾아주는 자판기가 아닌 <b>확률적 문장 생성기</b>입니다. 존재하지 않는 가짜 뉴스나 연도를 매우 그럴듯하게 말할 수 있습니다.
-                        </p>
-                        <div class="bg-slate-900 p-3 rounded text-xs space-y-1.5 text-slate-300 border border-slate-700">
-                            <div class="text-amber-400 font-bold"><i class="fa-solid fa-lightbulb"></i> 공략 노하우:</div>
-                            <p>• 숫자, 날짜, 학술 전문 지식은 교재나 공식 자료로 <b>이중 교차 검증</b> 필수!</p>
-                            <p>• AI 산출물은 완제품이 아닌 <b>수정이 필요한 초안</b>으로만 다루기.</p>
-                        </div>
-                    </div>
-                    <button class="complete-quest-btn mt-4 w-full pixel-btn bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 text-xs rounded border border-slate-500 transition">
-                        퀘스트 1 완료하기 (+25 EXP)
-                    </button>
-                </div>
-
-                <!-- Quest 2 -->
-                <div class="quest-card bg-slate-800 border-2 border-slate-600 rounded-lg p-5 flex flex-col justify-between transition-all duration-300 hover:border-emerald-500" data-quest="2">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded">QUEST 02</span>
-                            <span class="quest-badge text-xs text-slate-500 font-bold"><i class="fa-regular fa-circle"></i> 미완료</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> 저작권 지뢰 피하기
-                        </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            인간의 독창적인 창작성이 개입되지 않은 pure AI 산출물은 원칙적으로 저작권이 인정되지 않습니다.
-                        </p>
-                        <div class="bg-slate-900 p-3 rounded text-xs space-y-1.5 text-slate-300 border border-slate-700">
-                            <div class="text-amber-400 font-bold"><i class="fa-solid fa-lightbulb"></i> 공략 노하우:</div>
-                            <p>• 기존 화가의 학풍이나 타인의 캐릭터 스타일을 똑같이 베껴달라는 프롬프트 금지.</p>
-                            <p>• 타인의 그림이나 글을 무단으로 복사하여 AI 입력창에 집어넣는 행위 주의.</p>
-                        </div>
-                    </div>
-                    <button class="complete-quest-btn mt-4 w-full pixel-btn bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 text-xs rounded border border-slate-500 transition">
-                        퀘스트 2 완료하기 (+25 EXP)
-                    </button>
-                </div>
-
-                <!-- Quest 3 -->
-                <div class="quest-card bg-slate-800 border-2 border-slate-600 rounded-lg p-5 flex flex-col justify-between transition-all duration-300 hover:border-emerald-500" data-quest="3">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded">QUEST 03</span>
-                            <span class="quest-badge text-xs text-slate-500 font-bold"><i class="fa-regular fa-circle"></i> 미완료</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-lock text-sky-400"></i> 개인정보 철통 보안
-                        </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            AI 채팅창에 입력하는 대화와 업로드된 문서 파일 데이터는 AI 학습용 재료로 영구 저장 및 활용될 위험이 있습니다.
-                        </p>
-                        <div class="bg-slate-900 p-3 rounded text-xs space-y-1.5 text-slate-300 border border-slate-700">
-                            <div class="text-amber-400 font-bold"><i class="fa-solid fa-lightbulb"></i> 공략 노하우:</div>
-                            <p>• 연락처, 비밀번호, 사적인 고민 등 민감 정보 입력 절대 금지!</p>
-                            <p>• 서비스 설정 메뉴에서 <b>'대화 이력 학습 기능(Data Controls)' 비활성화</b> 추천.</p>
-                        </div>
-                    </div>
-                    <button class="complete-quest-btn mt-4 w-full pixel-btn bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 text-xs rounded border border-slate-500 transition">
-                        퀘스트 3 완료하기 (+25 EXP)
-                    </button>
-                </div>
-
-                <!-- Quest 4 -->
-                <div class="quest-card bg-slate-800 border-2 border-slate-600 rounded-lg p-5 flex flex-col justify-between transition-all duration-300 hover:border-emerald-500" data-quest="4">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded">QUEST 04</span>
-                            <span class="quest-badge text-xs text-slate-500 font-bold"><i class="fa-regular fa-circle"></i> 미완료</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-eye text-purple-400"></i> 당당한 출처 표기와 투명성
-                        </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            AI 활용 사실을 몰래 숨기지 말고, 과제에 정확하고 당당하게 출처 및 프롬프트를 명시합니다.
-                        </p>
-                        <div class="bg-slate-900 p-3 rounded text-xs space-y-1.5 text-slate-300 border border-slate-700">
-                            <div class="text-amber-400 font-bold"><i class="fa-solid fa-lightbulb"></i> 공략 노하우:</div>
-                            <p>• 과제 시작 전 교수님과 학과의 AI 활용 가이드라인 사전 확인 필수.</p>
-                            <p>• 이미지 사용 시 사람이 직관적으로 알아볼 수 있는 가시적 워터마크 및 프롬프트 표기.</p>
-                        </div>
-                    </div>
-                    <button class="complete-quest-btn mt-4 w-full pixel-btn bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 text-xs rounded border border-slate-500 transition">
-                        퀘스트 4 완료하기 (+25 EXP)
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Tool Section: AI Source Citation Generator -->
-        <section class="bg-slate-800 border-2 border-slate-700 p-5 rounded-lg space-y-4">
-            <h2 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
-                <i class="fa-solid fa-file-pen"></i> AI 활용 표준 출처 표기 생성기
-            </h2>
-            <p class="text-xs text-slate-300">과제 하단이나 참고문헌란에 붙여 넣을 정석적인 AI 출처 표기를 자동으로 생성합니다.</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">사용 AI 모델</label>
-                    <select id="cite-model" class="w-full bg-slate-900 border border-slate-600 rounded px-2 py-1.5 text-xs text-white">
-                        <option value="ChatGPT (GPT-4o)">ChatGPT (GPT-4o)</option>
-                        <option value="Gemini 2.5 Flash">Gemini 2.5 Flash</option>
-                        <option value="Claude 3.5 Sonnet">Claude 3.5 Sonnet</option>
-                        <option value="Midjourney v6">Midjourney v6</option>
-                        <option value="NotebookLM">NotebookLM</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">활용 일자</label>
-                    <input type="date" id="cite-date" class="w-full bg-slate-900 border border-slate-600 rounded px-2 py-1.5 text-xs text-white">
-                </div>
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">사용 목적</label>
-                    <input type="text" id="cite-purpose" placeholder="예: 목차 구성 및 초안 작성" class="w-full bg-slate-900 border border-slate-600 rounded px-2 py-1.5 text-xs text-white">
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-xs text-slate-400 mb-1">주요 프롬프트 내용</label>
-                <input type="text" id="cite-prompt" placeholder="예: 생성형 AI 윤리적 문제점에 대한 개요 작성해줘" class="w-full bg-slate-900 border border-slate-600 rounded px-2 py-1.5 text-xs text-white">
-            </div>
-
-            <div class="bg-slate-900 p-3 rounded border border-slate-700 flex justify-between items-center gap-2">
-                <div id="cite-output" class="text-xs font-mono text-emerald-300 truncate">
-                    ※ 입력값을 채우시면 출처 표기 문장이 완성됩니다.
-                </div>
-                <button id="copy-cite-btn" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1.5 rounded font-bold shrink-0">
-                    <i class="fa-regular fa-copy"></i> 복사
-                </button>
-            </div>
-        </section>
-
-        <!-- Final Diagnosis / Self Checklist -->
-        <section class="bg-slate-800 border-2 border-amber-500/60 p-5 rounded-lg space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
-                    <i class="fa-solid fa-clipboard-check"></i> 과제 제출 전 1분 자가진단 최종 테스트
-                </h2>
-                <span class="text-xs text-slate-400">4개 항목 모두 체크 필수</span>
-            </div>
-
-            <div class="space-y-2">
-                <label class="flex items-start gap-3 bg-slate-900 p-3 rounded border border-slate-700 cursor-pointer hover:border-amber-500/50 transition">
-                    <input type="checkbox" class="chk-final mt-1 w-4 h-4 accent-emerald-500">
-                    <span class="text-xs text-slate-200">AI 답변을 그대로 복붙하지 않고 나만의 생각과 비판적 논리를 더했나요?</span>
-                </label>
-                <label class="flex items-start gap-3 bg-slate-900 p-3 rounded border border-slate-700 cursor-pointer hover:border-amber-500/50 transition">
-                    <input type="checkbox" class="chk-final mt-1 w-4 h-4 accent-emerald-500">
-                    <span class="text-xs text-slate-200">의심스러운 수치와 핵심 데이터는 공식 문헌/교재로 팩트 체크를 완료했나요?</span>
-                </label>
-                <label class="flex items-start gap-3 bg-slate-900 p-3 rounded border border-slate-700 cursor-pointer hover:border-amber-500/50 transition">
-                    <input type="checkbox" class="chk-final mt-1 w-4 h-4 accent-emerald-500">
-                    <span class="text-xs text-slate-200">타인의 저작물이나 민감한 개인정보/비밀번호를 입력창에 적지 않았나요?</span>
-                </label>
-                <label class="flex items-start gap-3 bg-slate-900 p-3 rounded border border-slate-700 cursor-pointer hover:border-amber-500/50 transition">
-                    <input type="checkbox" class="chk-final mt-1 w-4 h-4 accent-emerald-500">
-                    <span class="text-xs text-slate-200">어떤 AI 모델을 어떻게 활용했는지 과제 하단에 투명하게 출처를 남겼나요?</span>
-                </label>
-            </div>
-
-            <button id="final-submit-btn" disabled class="w-full pixel-btn bg-slate-700 text-slate-400 cursor-not-allowed font-bold py-3 text-sm rounded border border-slate-600 transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-trophy"></i> 최종 생존 인증서 발급받기
-            </button>
-        </section>
-
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
+        <div id="cardGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cards will be injected dynamically via JS -->
+        </div>
     </main>
 
+    <!-- Modal Popup for Card Details -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-transform duration-300 border border-slate-100 dark:border-slate-700" id="modalContainer">
+            <div class="p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div id="modalIcon" class="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"></div>
+                        <div>
+                            <span id="modalCategory" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider"></span>
+                            <h3 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white mt-0.5"></h3>
+                        </div>
+                    </div>
+                    <button id="closeModal" class="p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div id="modalBody" class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <!-- Dynamic modal content -->
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700/60 flex justify-end">
+                    <button id="modalCloseBtn" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition shadow-lg shadow-indigo-500/20">
+                        확인
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t-2 border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
-        <div class="max-w-5xl mx-auto space-y-2">
-            <p class="font-bold text-slate-400">인공지능은 거들 뿐, 진짜 창작의 주인공은 바로 나!</p>
-            <p>편리함에 의존하기보다 나만의 비판적 사고로 통제하는 진짜 실력을 키우세요.</p>
-            <p class="text-slate-600 pt-2">AI Assignment Survival Guide • Powered by NotebookLM</p>
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-slate-500 dark:text-slate-400">
+            <p>© 2026 인공지능일반 포트폴리오. All rights reserved.</p>
+            <p class="mt-1">본 포트폴리오는 생성형 AI 활용 가이드라인을 준수하여 작성되었습니다.</p>
         </div>
     </footer>
 
-    <!-- Resource Viewer Modal (PPT/인포그래픽/동영상 모달) -->
-    <div id="resource-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border-4 border-slate-600 max-w-lg w-full p-5 rounded-lg space-y-4 relative shadow-2xl">
-            <button id="close-resource-modal" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            
-            <div id="resource-modal-header" class="flex items-center gap-2 border-b border-slate-700 pb-3">
-                <i id="resource-modal-icon" class="text-xl"></i>
-                <h3 id="resource-modal-title" class="text-lg font-bold text-white">자료 보기</h3>
-            </div>
-
-            <div id="resource-modal-content" class="text-xs text-slate-300 space-y-3 leading-relaxed">
-                <!-- Dynamic Content Area -->
-            </div>
-
-            <div class="pt-2">
-                <button id="action-resource-modal" class="w-full pixel-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 text-xs rounded border border-black">
-                    확인
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Complete Modal -->
-    <div id="cert-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border-4 border-emerald-400 max-w-md w-full p-6 rounded-lg text-center space-y-4 shadow-2xl relative animate-scale-up">
-            <div class="w-20 h-20 bg-emerald-500 text-slate-950 text-4xl rounded-full flex items-center justify-center mx-auto border-4 border-black font-bold shadow-lg">
-                <i class="fa-solid fa-crown"></i>
-            </div>
-            <div>
-                <span class="bg-amber-400 text-slate-950 font-bold px-2 py-0.5 text-xs rounded uppercase">QUEST COMPLETE</span>
-                <h3 class="text-2xl font-bold text-white mt-2">AI 과제 생존 마스터</h3>
-                <p class="text-xs text-slate-300 mt-1">축하합니다! 생성형 AI 과제 폭탄 피하기 교육 과정을 완수하셨습니다.</p>
-            </div>
-
-            <div class="bg-slate-950 p-4 rounded border border-slate-800 text-left text-xs space-y-2 font-mono">
-                <div class="text-emerald-400 font-bold flex justify-between">
-                    <span>STATUS: ALL CLEAR</span>
-                    <span>LV. MAX (PRO)</span>
-                </div>
-                <div class="text-slate-400">• 할루시네이션 교차 검증 통과</div>
-                <div class="text-slate-400">• 저작권 & 개인정보 보안 준수</div>
-                <div class="text-slate-400">• 투명한 AI 출처 표기 마스터</div>
-            </div>
-
-            <button id="close-modal-btn" class="w-full pixel-btn bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 text-sm rounded border-2 border-black">
-                확인 및 메인으로 돌아가기
-            </button>
-        </div>
-    </div>
-
-    <!-- Retro Audio Synthesizer JavaScript -->
+    <!-- JavaScript Data and Logic -->
     <script>
-        // Retro Audio Helper using Web Audio API
-        let audioCtx = null;
-        let soundEnabled = true;
+        // Portfolio Items Data
+        const portfolioItems = [
+            {
+                id: "ai-principles",
+                title: "생성형 AI 활용원칙",
+                category: "AI 윤리 & 규칙",
+                icon: "shield-check",
+                color: "from-blue-500 to-indigo-600",
+                badge: "윤리 및 책임",
+                link: "./notebooklm/index.html",
+                shortDesc: "올바른 생성형 AI 기술 활용을 위해 정립한 나만의 5가지 핵심 윤리 수칙 및 가이드라인입니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">나만의 생성형 AI 활용 5대 원칙</h4>
+                    <ul class="list-disc list-inside space-y-2 pl-2 mb-4">
+                        <li><strong>비판적 사고 유지:</strong> AI가 생성한 결과물은 오류(환각 현상)가 있을 수 있으므로 교과서 및 교차 검증을 필수 실시합니다.</li>
+                        <li><strong>출처 명확히 표기:</strong> AI 모델의 도움을 받아 작성한 보고서나 아이디어는 활용 범위를 명확히 주석으로 달아 투명성을 높입니다.</li>
+                        <li><strong>개인정보 및 저작권 보호:</strong> 민감한 개인 정보나 타인의 저작권 침해 우려가 있는 데이터는 프롬프트에 입력하지 않습니다.</li>
+                        <li><strong>학습 보조 도구로의 활용:</strong> AI에게 해답을 전적으로 요구하기보다 탐구의 계기를 마련하는 질문 파트너로 활용합니다.</li>
+                        <li><strong>표절 방지:</strong> AI가 생성한 텍스트를 그대로 복사-붙여넣기 하지 않고 나만의 문장으로 재구성합니다.</li>
+                    </ul>
+                    <div class="pt-2">
+                        <a href="./notebooklm/index.html" class="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition shadow-lg shadow-indigo-500/20 text-sm">
+                            <i data-lucide="external-link" class="w-4 h-4"></i> NotebookLM 상세 페이지 바로가기
+                        </a>
+                    </div>
+                `
+            },
+            {
+                id: "ai-story-video",
+                title: "AI 스토리와 영상",
+                category: "창의적 콘텐츠",
+                icon: "clapperboard",
+                color: "from-purple-500 to-pink-600",
+                badge: "생성형 AI 융합",
+                shortDesc: "ChatGPT와 Midjourney, Runway를 활용해 제작한 단편 인공지능 시나리오 및 영상 프로젝트입니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">프로젝트 개요: "2040년, AI 선생님과의 하루"</h4>
+                    <p class="mb-3">챗GPT로 SF 단편 시나리오 스크립트를 작성하고, 이미지 생성 AI를 통해 씬별 콘셉트 아트를 제작한 후 영상화한 작품입니다.</p>
+                    <div class="bg-slate-100 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600 space-y-2">
+                        <p><strong>🎬 주요 활용 도구:</strong> ChatGPT-4o (스토리), Midjourney (시각화), Runway Gen-2 (영상 변환)</p>
+                        <p><strong>💡 기획 의도:</strong> 미래 교육 현장에서 인간 교사와 AI 교사의 상호작용 및 조화를 스토리텔링 형식으로 구현했습니다.</p>
+                    </div>
+                `
+            },
+            {
+                id: "career-data-analysis",
+                title: "진로 데이터 분석",
+                category: "데이터 탐구",
+                icon: "bar-chart-3",
+                color: "from-emerald-500 to-teal-600",
+                badge: "Python & Pandas",
+                shortDesc: "관심 진로 분야의 최근 5년간 채용 트렌드 및 유망 기술 역량을 공공 데이터 기반으로 분석했습니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">AI & 소프트웨어 직군 채용 데이터 분석</h4>
+                    <p class="mb-3">워크넷 및 잡플래닛 공공 API 수집 데이터를 활용해 Python(Pandas, Matplotlib)으로 트렌드를 시각화했습니다.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>인공지능 모델러 수요 증가율</span>
+                            <span class="font-bold text-emerald-600">+34.2%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full rounded-full" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2">* 주요 키워드: Python, PyTorch, MLOps, LLM Fine-tuning</p>
+                    </div>
+                `
+            },
+            {
+                id: "my-career-report",
+                title: "나의 진로 리포트",
+                category: "진로 설계를 위한 AI",
+                icon: "file-text",
+                color: "from-amber-500 to-orange-600",
+                badge: "자기계발",
+                shortDesc: "데이터 분석 결과와 AI 역량 진단을 토대로 작성한 나의 목표 진로(AI 연구원) 로드맵입니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">목표 진로: AI 에이전트 개발 연구원</h4>
+                    <p class="mb-3">데이터 분석 결과를 기반으로 스스로 설정한 단계별 진로 성장 로드맵입니다.</p>
+                    <div class="border-l-2 border-amber-500 pl-4 space-y-3">
+                        <div>
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400">STEP 1 (고교 단계)</span>
+                            <p class="text-sm">파이썬 기초, 수학(선형대수, 확률과 통계) 기틀 마련, AI 알고리즘 프로젝트 구상</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400">STEP 2 (학부 단계)</span>
+                            <p class="text-sm">컴퓨터공학/인공지능전공 진학, 오픈소스 프로젝트 참여 및 AI 모델 경진대회 참가</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "local-issue-data",
+                title: "지역 문제 데이터 분석",
+                category: "사회적 탐구",
+                icon: "map-pin",
+                color: "from-rose-500 to-red-600",
+                badge: "지역사회 문제",
+                shortDesc: "우리 지역의 쓰레기 무단투기 및 쓰레기통 위치 데이터를 탐색하여 개선점을 도출했습니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">우리 동네 스마트 쓰레기통 최적 입지 선정</h4>
+                    <p class="mb-3">지역 구청의 열린데이터 광장을 활용해 무단투기 신고 민원 발생 구역과 가공된 공공 데이터 세트를 융합 분석했습니다.</p>
+                    <div class="bg-rose-50 dark:bg-rose-900/20 p-4 rounded-xl text-sm border border-rose-100 dark:border-rose-800">
+                        <p class="font-semibold text-rose-800 dark:text-rose-300 mb-1">🔍 인사이트 도출:</p>
+                        <p>버스 정류장 부근과 유동인구가 집중되는 상가 입구 주변의 민원 발생율이 68% 이상을 차지함을 확인. 이에 기초한 스마트 클린존 설치 가이드 제시.</p>
+                    </div>
+                `
+            },
+            {
+                id: "school-solution-app",
+                title: "학교 문제 해결 웹앱",
+                category: "프로젝트 개발",
+                icon: "layout-grid",
+                color: "from-cyan-500 to-blue-600",
+                badge: "웹/앱 프로토타입",
+                shortDesc: "급식 잔반 줄이기 및 실시간 급식 만족도 투표를 지원하는 '클린 급식 알리미' 웹앱을 개발했습니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">웹앱 이름: "클린Meal - 급식 잔반 줄이기"</h4>
+                    <p class="mb-3">학생들의 잔반을 줄이고 당일 메뉴에 대한 직관적 평가를 수집하는 AI 기반 분석 웹 프로토타입입니다.</p>
+                    <div class="space-y-2">
+                        <div class="p-3 bg-slate-100 dark:bg-slate-700/50 rounded-lg text-xs font-mono">
+                            // 주요 기능: 이미지 인식 기반 잔반 측정 알고리즘 모델 접목<br>
+                            function analyzeFoodWaste(imageInput) { ... }
+                        </div>
+                        <p class="text-sm">기대 효과: 잔반량 20% 감소, 잔반 처리 비용 절감 효과 실현</p>
+                    </div>
+                `
+            },
+            {
+                id: "public-data-app",
+                title: "공공데이터 앱",
+                category: "데이터 응용",
+                icon: "database",
+                color: "from-indigo-500 to-violet-600",
+                badge: "API 연동",
+                shortDesc: "국가 공공데이터포털 Open API를 연동하여 실시간 미세먼지 측정 및 알림 앱을 제작했습니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">에어체크 (AirCheck) - 실시간 대기질 안내 앱</h4>
+                    <p class="mb-3">공공데이터포털의 한국환경공단 에어코리아 대기오염정보 Open API를 활용한 실용 앱입니다.</p>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>GPS 위치 기반 현재 동네 미세먼지/초미세먼지 농도 수집</li>
+                        <li>취약계층을 위한 마스크 착용 권고 자동 알림 기능 제공</li>
+                        <li>JSON 형식 데이터 파싱 및 파이썬 Streamlit 인터페이스 구성</li>
+                    </ul>
+                `
+            },
+            {
+                id: "final-reflection",
+                title: "최종 성찰 내용",
+                category: "성장 소감",
+                icon: "heart-handshake",
+                color: "from-teal-500 to-emerald-600",
+                badge: "메타인지",
+                shortDesc: "한 학기 동안 인공지능일반 수업을 이수하며 느낀 자신의 기술적, 윤리적 성장에 대한 총평입니다.",
+                details: `
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">한 학기 AI 배움의 여정을 마치며</h4>
+                    <p class="mb-3">인공지능을 단순한 '신기한 도구'로 바라보던 시선에서, '사회적 문제를 해결하는 강력한 무기'이자 '책임감을 갖고 다뤄야 할 기술'로 시야가 넓어졌습니다.</p>
+                    <blockquote class="p-4 italic border-l-4 border-teal-500 bg-teal-50 dark:bg-teal-900/20 text-slate-700 dark:text-slate-200 rounded-r-xl text-sm">
+                        "기술의 단순 활용을 넘어, 공공을 향한 문제의식과 데이터 기반 해결책을 도출할 수 있었던 뜻깊은 탐구 활동이었습니다."
+                    </blockquote>
+                `
+            }
+        ];
 
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Card Click Handler
+        function handleCardClick(id) {
+            const item = portfolioItems.find(p => p.id === id);
+            if (item && item.link) {
+                window.location.href = item.link;
+            } else {
+                openModal(id);
             }
         }
 
-        function playSound(type) {
-            if (!soundEnabled) return;
-            initAudio();
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+        // Render Portfolio Cards
+        function renderCards() {
+            const grid = document.getElementById('cardGrid');
+            grid.innerHTML = portfolioItems.map((item) => `
+                <div onclick="handleCardClick('${item.id}')" 
+                     class="group cursor-pointer glass-card rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${item.color} opacity-10 group-hover:opacity-20 rounded-full transition-opacity blur-xl"></div>
+                    
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-3 rounded-2xl bg-gradient-to-br ${item.color} text-white shadow-md">
+                                <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                ${item.badge}
+                            </span>
+                        </div>
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase">${item.category}</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            ${item.title}
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
+                            ${item.shortDesc}
+                        </p>
+                    </div>
 
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
+                    <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <span>자세히 보기</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform text-indigo-500"></i>
+                    </div>
+                </div>
+            `).join('');
 
-            const now = audioCtx.currentTime;
-
-            if (type === 'click') {
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(400, now);
-                osc.frequency.exponentialRampToValueAtTime(800, now + 0.05);
-                gain.gain.setValueAtTime(0.1, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.05);
-                osc.start(now);
-                osc.stop(now + 0.05);
-            } else if (type === 'levelup') {
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(300, now);
-                osc.frequency.setValueAtTime(400, now + 0.1);
-                osc.frequency.setValueAtTime(523.25, now + 0.2); // C5
-                osc.frequency.setValueAtTime(659.25, now + 0.3); // E5
-                gain.gain.setValueAtTime(0.15, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.5);
-                osc.start(now);
-                osc.stop(now + 0.5);
-            } else if (type === 'win') {
-                const notes = [523.25, 659.25, 783.99, 1046.50];
-                notes.forEach((freq, idx) => {
-                    const subOsc = audioCtx.createOscillator();
-                    const subGain = audioCtx.createGain();
-                    subOsc.type = 'square';
-                    subOsc.frequency.setValueAtTime(freq, now + idx * 0.12);
-                    subGain.gain.setValueAtTime(0.1, now + idx * 0.12);
-                    subGain.gain.linearRampToValueAtTime(0, now + idx * 0.12 + 0.1);
-                    subOsc.connect(subGain);
-                    subGain.connect(audioCtx.destination);
-                    subOsc.start(now + idx * 0.12);
-                    subOsc.stop(now + idx * 0.12 + 0.12);
-                });
-            }
+            lucide.createIcons();
         }
 
-        // State Management
-        let userExp = 0;
-        let completedQuests = new Set();
+        // Modal Control
+        const modal = document.getElementById('modal');
+        const modalContainer = document.getElementById('modalContainer');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set today's date in citation tool
-            const dateInput = document.getElementById('cite-date');
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.value = today;
+        function openModal(id) {
+            const item = portfolioItems.find(p => p.id === id);
+            if (!item) return;
 
-            updateCitation();
+            document.getElementById('modalCategory').innerText = item.category;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalIcon').innerHTML = `<i data-lucide="${item.icon}" class="w-6 h-6"></i>`;
+            document.getElementById('modalBody').innerHTML = item.details;
 
-            // Sound Toggle Listener
-            const soundBtn = document.getElementById('sound-toggle');
-            soundBtn.addEventListener('click', () => {
-                soundEnabled = !soundEnabled;
-                soundBtn.innerHTML = soundEnabled 
-                    ? '<i class="fa-solid fa-volume-high"></i>' 
-                    : '<i class="fa-solid fa-volume-xmark"></i>';
-            });
+            lucide.createIcons();
 
-            // Resource Modal Handlers
-            const resModal = document.getElementById('resource-modal');
-            const resIcon = document.getElementById('resource-modal-icon');
-            const resTitle = document.getElementById('resource-modal-title');
-            const resContent = document.getElementById('resource-modal-content');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
 
-            // 1. 발표자료 다운로드 버튼 클릭 효과음
-            document.getElementById('download-ppt-btn').addEventListener('click', () => {
-                playSound('click');
-            });
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+        }
 
-            // 2. 인포그래픽 보기 버튼 (ai-ethical-guide.png 이미지 팝업)
-            document.getElementById('view-infographic-btn').addEventListener('click', () => {
-                playSound('click');
-                resIcon.className = 'fa-solid fa-image text-sky-400 text-xl';
-                resTitle.innerText = '인포그래픽 가이드';
-                resContent.innerHTML = `
-                    <div class="bg-slate-950 p-3 rounded border border-slate-800 space-y-3 text-center">
-                        <div class="overflow-hidden rounded border border-slate-700 max-h-[60vh] flex justify-center items-center bg-slate-900 p-1">
-                            <img src="ai-ethical-guide.png" alt="AI 윤리 가이드 인포그래픽" class="max-w-full max-h-[55vh] object-contain rounded" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/1e293b/10b981?text=ai-ethical-guide.png';" />
-                        </div>
-                        <p class="text-xs text-slate-300">생성형 AI의 바른 활용법과 윤리 지침을 담은 인포그래픽입니다.</p>
-                    </div>
-                `;
-                resModal.classList.remove('hidden');
-            });
-
-            // 3. 동영상 보기 버튼 (m4a 오디오/동영상 파일 재생기)
-            document.getElementById('view-video-btn').addEventListener('click', () => {
-                playSound('click');
-                resIcon.className = 'fa-solid fa-circle-play text-rose-400 text-xl';
-                resTitle.innerText = '실전 생존법 가이드';
-                resContent.innerHTML = `
-                    <div class="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
-                        <div class="flex items-center gap-2 text-rose-400 font-bold text-sm border-b border-slate-800 pb-2">
-                            <i class="fa-solid fa-headphones"></i>
-                            <span>AI에게_뒤통수_안_맞는_실전_생존법.m4a</span>
-                        </div>
-                        <p class="text-xs text-slate-300">아래 재생 버튼을 눌러 실전 AI 생존법 오디오/동영상 가이드를 청취하세요.</p>
-                        
-                        <!-- M4A 파일 재생을 위한 미디어 플레이어 -->
-                        <div class="bg-slate-900 p-3 rounded border border-slate-700">
-                            <audio controls class="w-full rounded">
-                                <source src="AI에게_뒤통수_안_맞는_실전_생존법.m4a" type="audio/mp4">
-                                <source src="AI에게_뒤통수_안_맞는_실전_생존법.m4a" type="audio/x-m4a">
-                                브라우저가 오디오 재생을 지원하지 않습니다.
-                            </audio>
-                        </div>
-                    </div>
-                `;
-                resModal.classList.remove('hidden');
-            });
-
-            // Close Resource Modal
-            document.getElementById('close-resource-modal').addEventListener('click', () => {
-                playSound('click');
-                stopModalAudio();
-                resModal.classList.add('hidden');
-            });
-            document.getElementById('action-resource-modal').addEventListener('click', () => {
-                playSound('click');
-                stopModalAudio();
-                resModal.classList.add('hidden');
-            });
-
-            function stopModalAudio() {
-                const audioElement = resContent.querySelector('audio');
-                if (audioElement) {
-                    audioElement.pause();
-                }
-            }
-
-            // Quest Complete Handlers
-            const questBtns = document.querySelectorAll('.complete-quest-btn');
-            questBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const card = e.target.closest('.quest-card');
-                    const qId = card.dataset.quest;
-
-                    if (!completedQuests.has(qId)) {
-                        completedQuests.add(qId);
-                        userExp += 25;
-                        playSound('levelup');
-
-                        // UI Updates
-                        card.classList.remove('border-slate-600');
-                        card.classList.add('border-emerald-500', 'bg-emerald-950/20');
-                        
-                        const badge = card.querySelector('.quest-badge');
-                        badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i> <span class="text-emerald-400">완료됨</span>';
-
-                        btn.disabled = true;
-                        btn.classList.remove('bg-slate-700', 'hover:bg-slate-600');
-                        btn.classList.add('bg-emerald-600', 'text-white', 'cursor-default');
-                        btn.innerText = 'QUEST COMPLETE ✓';
-
-                        updateProgress();
-                    }
-                });
-            });
-
-            // Citation Input Listeners
-            ['cite-model', 'cite-date', 'cite-purpose', 'cite-prompt'].forEach(id => {
-                document.getElementById(id).addEventListener('input', updateCitation);
-            });
-
-            // Citation Copy Button
-            document.getElementById('copy-cite-btn').addEventListener('click', () => {
-                const text = document.getElementById('cite-output').innerText;
-                navigator.clipboard.writeText(text).then(() => {
-                    playSound('click');
-                    const copyBtn = document.getElementById('copy-cite-btn');
-                    copyBtn.innerText = '복사 완료!';
-                    setTimeout(() => {
-                        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> 복사';
-                    }, 1500);
-                });
-            });
-
-            // Checklist Logic
-            const checkboxes = document.querySelectorAll('.chk-final');
-            const submitBtn = document.getElementById('final-submit-btn');
-
-            checkboxes.forEach(chk => {
-                chk.addEventListener('change', () => {
-                    playSound('click');
-                    const allChecked = Array.from(checkboxes).every(c => c.checked);
-                    if (allChecked) {
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('bg-slate-700', 'text-slate-400', 'cursor-not-allowed');
-                        submitBtn.classList.add('bg-amber-500', 'hover:bg-amber-400', 'text-slate-950', 'shadow-lg');
-                    } else {
-                        submitBtn.disabled = true;
-                        submitBtn.classList.add('bg-slate-700', 'text-slate-400', 'cursor-not-allowed');
-                        submitBtn.classList.remove('bg-amber-500', 'hover:bg-amber-400', 'text-slate-950');
-                    }
-                });
-            });
-
-            // Submit Final Certification
-            submitBtn.addEventListener('click', () => {
-                if (!submitBtn.disabled) {
-                    playSound('win');
-                    document.getElementById('cert-modal').classList.remove('hidden');
-                }
-            });
-
-            // Close Modal
-            document.getElementById('close-modal-btn').addEventListener('click', () => {
-                playSound('click');
-                document.getElementById('cert-modal').classList.add('hidden');
-            });
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
         });
 
-        function updateProgress() {
-            const expBar = document.getElementById('exp-bar');
-            const levelText = document.getElementById('user-level');
-            const questText = document.getElementById('quest-progress-text');
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
 
-            expBar.style.width = `${userExp}%`;
-            questText.innerText = `완료: ${completedQuests.size} / 4`;
-
-            if (userExp >= 100) {
-                levelText.innerText = 'PRO';
-            } else if (userExp >= 50) {
-                levelText.innerText = '2';
-            } else {
-                levelText.innerText = '1';
-            }
-        }
-
-        function updateCitation() {
-            const model = document.getElementById('cite-model').value;
-            const date = document.getElementById('cite-date').value || 'YYYY-MM-DD';
-            const purpose = document.getElementById('cite-purpose').value.trim() || '과제 보조 작성';
-            const prompt = document.getElementById('cite-prompt').value.trim() || '관련 프롬프트 내용';
-
-            const formatted = `[AI 활용 출처 표기] 본 과제는 ${model}(활용일자: ${date})을 활용하여 '${purpose}' 용도로 보조 사용함. (프롬프트: "${prompt}")`;
-            document.getElementById('cite-output').innerText = formatted;
-        }
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+        });
     </script>
 </body>
 </html>
